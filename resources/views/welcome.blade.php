@@ -1,3 +1,10 @@
+<?php
+  var_dump(App\User::class);
+  var_dump(\App\User::class);
+  var_dump(\User::class);
+  var_dump(User::class);
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>

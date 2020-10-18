@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        // 追加新しいguard
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
     ],
 
     /*
@@ -68,7 +73,14 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
+            // 'model' => 'App\User'
             'model' => App\User::class,
+        ],
+        // 新しいguardに応じるのモデルを追加
+        'admin' => [
+            'driver' => 'eloquent',
+            // 'model' => 'App\User'
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [

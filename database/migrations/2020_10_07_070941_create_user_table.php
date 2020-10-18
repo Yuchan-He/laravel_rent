@@ -13,13 +13,13 @@ class CreateUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table -> bigIncrements('id');
             $table -> string('username',20) -> notNull();
             $table -> string('password',255) -> notNull();
-            $table -> string('email',20) -> default('');
-            $table -> string('phone',15) -> default('');
-            $table -> enum('sex',['Woman','Man']) -> default('Woman');
+            $table -> string('email',50) -> default('');
+            $table -> string('phone',16) -> default('');
+            $table -> enum('sex',[1,2,3]);
             $table -> softDeletes();
             $table -> timestamps();
         });

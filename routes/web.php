@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// 管理者のrouteを入れる
+// ('admin/admin.php');
+include base_path('routes/admin/admin.php');

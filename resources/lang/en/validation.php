@@ -117,6 +117,9 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+    // 自分の追加
+    'mobile' => ':attribute 格式不对',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
