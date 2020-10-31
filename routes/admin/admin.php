@@ -28,6 +28,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
 		// ユーザー削除機能
 		Route::delete('user/del/{id}','UserController@del') -> name('admin.user.del');
 
+		// ユーザー情報編集機能
+		Route::get('user/edit/{id}','UserController@edit') -> name('admin.user.edit');
+		Route::put('user/edit/{id}','UserController@update') -> name('admin.user.update');
+
+		
+
 
 	});
 

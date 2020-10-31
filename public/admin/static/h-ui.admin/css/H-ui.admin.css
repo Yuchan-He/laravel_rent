@@ -126,27 +126,3 @@ h4{line-height:30px}
 .portfolio-area li.hover .textbox{ display: block;}
 .portfolio-area li label{ display:block; cursor:pointer}
 
-/*paginationの表示*/
-ul.pagination {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-}
-
-ul.pagination li {display: inline;}
-
-ul.pagination li a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-ul.pagination li a.active {
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-}
-
-ul.pagination li a:hover:not(.active) {background-color: #ddd;}
