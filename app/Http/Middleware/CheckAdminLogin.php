@@ -17,7 +17,7 @@ class CheckAdminLogin
     {
         // ユーザー登録しているかどうか確認
         if (!auth() ->guard('admin') -> check()){
-            return redirect(route('admin.login')) -> withErrors(['error' => 'please login']);
+            return redirect(route('admin.login')) -> withErrors(['error' => 'ログインしてくだい']);
         }
 
         return $next($request);

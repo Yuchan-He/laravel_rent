@@ -10,41 +10,32 @@
 <nav class="breadcrumb">
 	<i class="Hui-iconfont">&#xe67f;</i> Home 
 	<span class="c-gray en">&gt;</span> 管理項目 
-	<span class="c-gray en">&gt;</span> ユーザー管理
+	<span class="c-gray en">&gt;</span> 削除したユーザー
 	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="更新" >
 		<i class="Hui-iconfont">&#xe68f;</i>
 	</a>
 </nav>
 <!-- エラー情報の表示 -->
 @include('admin.common.msg')
-<div class="page-container">
-	<form method="get" class="text-c">		
-		<input type="text" class="input-text" style="width:250px" placeholder="ユーザー名の一部を入力" name="kw" value = "{{$kw}}" autocomplete="off">
-		<button type="submit" class="btn btn-success"  name=""><i class="Hui-iconfont">&#xe665;</i> ユーザー検索</button>
-	</form>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
-		<span class="l">
-			<a href="javascript:;" onclick="user_add('&nbsp;','/admin/user/add','800','500')" class="btn btn-primary radius">
-				<i class="Hui-iconfont">&#xe600;</i> ユーザー追加
-			</a>
-		</span> <span class="r">合計：<strong> {{$sum}}</strong> 個　</span> </div>
+<div class="page-container">	
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
 				<th width="140">ユーザー名</th>
-				<th width="120">携帯</th>
-				<th>メール</th>
+				<th width="150">携帯</th>
+				<th width="150">メール</th>
 				<th width="80">性別</th>
-				<th width="130">登録時間</th>
-				<th width="130">編集</th>
+				<th width="130">削除時間</th>
+				<th>編集</th>
+				<!-- <th width="130">永久削除</th> -->
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($data as $value)
+			@foreach($deletedUsers as $value)
 			<tr class="text-c">	
 				<td>
-					@if(auth() -> guard('admin')-> id() != $value -> id)
+				@if(auth() -> guard('admin')-> id() != $value -> id)
 					<input type="checkbox" value="{{$value -> id}}" name="">
 					
 				</td>
@@ -58,23 +49,20 @@
 				@else
 					<td>秘密</td>
 				@endif
-				<td>{{$value -> created_at}}</td>
+				<td>{{$value -> deleted_at}}</td>
 				<td class="td-manage">
-					<a title="編集" href="{{route('admin.user.edit',['id' => $value -> id])}}"  class="ml-5" style="text-decoration:none">
-						<i class="Hui-iconfont">&#xe6df;</i>
-					</a>			
-					<a title="削除" href="{{route('admin.user.del',['id' => $value -> id])}}" class="ml-5 delbtn" style="text-decoration:none">
-						<i class="Hui-iconfont">&#xe6e2;</i>
-					</a>
-					@endif
+					<span><a title="復元" href="{{route('admin.user.restore',['id' => $value -> id])}}"  class="btn btn-success radius　restore" style="text-decoration:none">復元				
+					</a></span>			
+					<span><a title="永久削除" href="{{route('admin.user.deleted',['id' => $value -> id])}}" class="btn btn-warning radius delbtn" style="text-decoration:none">永久削除
+					</a></span>
+				@endif
 				</td>
 			</tr>
 			@endforeach
 			
 		</tbody>
 	</table>
-	<!-- ページ数を設定する -->
-	{{$data -> links()}}
+
 </div>
 @endsection
 @section('js')
@@ -87,6 +75,31 @@ const _token = "{{csrf_token()}}";
 function user_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
+
+// ajaxを通して、復元のリクエストを送る
+$('.restore').click(function(evt) {
+	// リクエストのurlを取得する
+	let url = $(this).attr('href');
+
+	$.ajax({
+		url,
+		data:{_token},
+		type:'',
+		dataType:'json'
+	}).then(({status,msg}) => {
+		if(status == 1) {
+			// 削除成功メッセージ
+			layer.msg(msg,{time:2000,icon:2},() => {
+			// view中行を削除
+			$(this).parents('tr').remove();			
+			});
+		}
+	});
+
+	// ディフォルト事件はhref画面に戻す、この事件をキャンセル
+	return false;
+});
+
 
 // ajaxを通して、deleteのリクエストを送る
 $('.delbtn').click(function(evt) {

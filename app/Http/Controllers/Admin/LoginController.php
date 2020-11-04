@@ -36,10 +36,9 @@ class LoginController extends Controller
         //  提出のデータをDBでチェックする
         $bool = auth() -> guard('admin') -> attempt($post);
         if(!$bool){
-            return redirect(route('admin.login')) -> withErrors(['error' => 'fail to login']);
+            return redirect(route('admin.login')) -> withErrors(['error' => 'ユーザー名か、パスワードが間違っています']);
         }else{
             $data = auth() -> guard('admin') -> user() -> toArray();
-            // return auth()->check
             return redirect(route('admin.index'));
         }
                 
