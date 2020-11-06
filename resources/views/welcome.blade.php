@@ -1,10 +1,3 @@
-<?php
-  var_dump(App\User::class);
-  var_dump(\App\User::class);
-  var_dump(\User::class);
-  var_dump(User::class);
-?>
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -92,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
+                    <a href="{{route('admin.login')}}">Login</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://blog.laravel.com">Blog</a>

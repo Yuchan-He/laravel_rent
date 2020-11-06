@@ -12,7 +12,7 @@ $factory->define(User::class, function (Faker $faker) {
         'username' 	=> $faker -> name(20),
         'password'	=> bcrypt('12345678'),
         'sex'		=> rand(1,3),
-        'phone'	=> $faker -> phoneNumber,
+        'mobile'	=> $faker -> phoneNumber,
         'email'		=> $faker -> email,
         'created_at'=> date('Y-m-d H:i:s',time())
 

@@ -18,7 +18,7 @@ class CreateUserTable extends Migration
             $table -> string('username',20) -> notNull();
             $table -> string('password',255) -> notNull();
             $table -> string('email',50) -> default('');
-            $table -> string('phone',16) -> default('');
+            $table -> string('mobile',16) -> default('');
             $table -> enum('sex',[1,2,3]);
             $table -> softDeletes();
             $table -> timestamps();
@@ -32,6 +32,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }
