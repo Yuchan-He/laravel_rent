@@ -47,7 +47,13 @@
 					</li>
 					<li>
 						<a data-href="{{route('admin.user.indexdeleted')}}" data-title="削除したユーザー" href="javascript:void(0)">削除したユーザー</a>
-					</li>					
+					</li>	
+					<li>
+						<a data-href="{{route('admin.role.index')}}" data-title="役割管理" href="javascript:void(0)">役割管理</a>
+					</li>
+					<li>
+						<a data-href="{{route('admin.node.index')}}" data-title="権限管理" href="javascript:void(0)">権限管理</a>
+					</li>										
 				</ul>
 			</dd>
 		</dl>					

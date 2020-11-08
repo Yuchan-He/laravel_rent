@@ -2,7 +2,7 @@
 
 @section('content')
 
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> Home <span class="c-gray en">&gt;</span> ユーザー管理 <span class="c-gray en">&gt;</span> ユーザー追加 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> Home <span class="c-gray en">&gt;</span> ユーザー管理 <span class="c-gray en">&gt;</span> ユーザー追加 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="更新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
 <article class="page-container">
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
@@ -73,6 +73,7 @@
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/localization/messages_ja.js"></script>
 <script type="text/javascript">
+
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -127,6 +128,7 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit({
 				type: 'post',
+				// 自己提交给自己，不需要指定
 				url: "" ,
 				success: function(data){
 					layer.msg('ユーザーを追加しました!',{icon:1,time:2000},function(){
@@ -153,6 +155,8 @@ $.validator.addMethod("IsMobile",function(value,element){
 	var tel = /^0[789]0-[0-9]{4}-[0-9]{4}$/;
 	return this.optional(element) || (tel.test(value));
 },"XXX-XXXX-XXXX形式で入力してください");
+
+
 
 </script> 
 

@@ -1,0 +1,27 @@
+﻿
+@extends('admin.common.main')
+
+@section('css')
+
+@endsection
+
+@section('content')
+
+@include('admin.common.msg')
+@foreach($data as $value)
+	
+	<a title="編集" href="javascript:;" style="text-decoration:none" onclick="admin_role_edit('役割追加','url','800','500')"><i class="Hui-iconfont">&#xe6df;</i>
+	</a> 
+@endforeach
+
+@endsection
+@section('js')
+<script type="text/javascript">
+	/*管理员-角色-编辑*/
+function admin_role_edit(title,url,id,w,h){
+	layer_show(title,"{{route('admin.role.edit',['id' => $value -> id])}}",w,h);
+}
+
+</script>
+
+@endsection

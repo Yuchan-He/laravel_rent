@@ -20,8 +20,3 @@ Route::get('/', function () {
 // ('admin/admin.php');
 include base_path('routes/admin/admin.php');
 
-// 清除缓存
-Route::get('/clear',function(){
-	Artisan::call('cache:clear');
-	return 'clear';
-});

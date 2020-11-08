@@ -9,35 +9,48 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
 	// loginデータの検証処理
 	Route::post('login','LoginController@login') -> name('admin.login');
 
-	Route::group(['middleware' => ['ckadmin']],function(){
+	Route::group([
+		'middleware' => ['ckadmin'],
+		'as' => 'admin.'
+		],function(){
 		// login成功画面の画面表示
-		Route::get('index','IndexController@index') -> name('admin.index'); 
+		Route::get('index','IndexController@index') -> name('index'); 
 		// login成功welcome画面
-		Route::get('welcome','IndexController@welcome') -> name('admin.welcome');
+		Route::get('welcome','IndexController@welcome') -> name('welcome');
 		/*
 		|---------------------------------
 		| ユーザー管理
 		|---------------------------------
 		*/
 		// ユーザーリスト画面
-		Route::get('user/index','UserController@index') -> name('admin.user.index');
+		Route::get('user/index','UserController@index') -> name('user.index');
 		// ユーザー追加画面
-		Route::get('user/add','UserController@create') -> name('admin.user.create');
+		Route::get('user/add','UserController@create') -> name('user.create');
 		// ユーザー追加機能
-		Route::post('user/add','UserController@store') -> name('admin.user.store');
+		Route::post('user/add','UserController@store') -> name('user.store');
 		// ユーザー削除機能
-		Route::delete('user/del/{id}','UserController@del') -> name('admin.user.del');
+		Route::delete('user/del/{id}','UserController@del') -> name('user.del');
 
 		// 削除したユーザー画面
-		Route::get('user/deleted','UserController@indexdeleted') -> name('admin.user.indexdeleted');
+		Route::get('user/deleted','UserController@indexdeleted') -> name('user.indexdeleted');
 		// 削除したユーザー復元画面
-		Route::get('user/restore/{id}','UserController@restore') -> name('admin.user.restore');
+		Route::get('user/restore/{id}','UserController@restore') -> name('user.restore');
 		// 削除したユーザー永久削除画面
-		Route::delete('user/deleted/{id}','UserController@deleted') -> name('admin.user.deleted');
+		Route::delete('user/deleted/{id}','UserController@deleted') -> name('user.deleted');
 
 		// ユーザー情報編集機能
-		Route::get('user/edit/{id}','UserController@edit') -> name('admin.user.edit');
-		Route::put('user/edit/{id}','UserController@update') -> name('admin.user.update');
+		Route::get('user/edit/{id}','UserController@edit') -> name('user.edit');
+		Route::put('user/edit/{id}','UserController@update') -> name('user.update');
+
+
+		// 分配权限
+		Route::get('role/node/{role}','RoleController@node') -> name('role.node');
+		// RBAC權限管理--role
+		Route::resource('role','RoleController');
+
+		// RBAC權限管理--node
+		Route::resource('node','NodeController');
+
 
 	});
 

@@ -15,10 +15,12 @@ class CreateUserTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table -> bigIncrements('id');
+            // 角色id
+            $table -> unsignedInteger('role_id') -> default(0);
             $table -> string('username',20) -> notNull();
             $table -> string('password',255) -> notNull();
             $table -> string('email',50) -> default('');
-            $table -> string('phone',16) -> default('');
+            $table -> string('mobile',16) -> default('');
             $table -> enum('sex',[1,2,3]);
             $table -> softDeletes();
             $table -> timestamps();
@@ -32,6 +34,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }

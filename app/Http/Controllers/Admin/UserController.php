@@ -1,16 +1,16 @@
 <?php
-// adminでユーザ管理
+// adminでユーザー管理
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\User; // = use app\Models\User 
 use Hash;
 
 class UserController extends BaseController
 {
     /**
-    * ユーザリスト画面 + 用户查询功能
+    * ユーザーリスト画面 + 用户查询功能
     * @param id
-    * @return ユーザリスト画面
+    * @return ユーザーリスト画面
     */
     public function index(Request $request){
         // 検索のデータを取得
@@ -27,7 +27,7 @@ class UserController extends BaseController
     }
 
 	/**
-    * ユーザ追加画面
+    * ユーザー追加画面
     * @param null 
     * @return view
     */
@@ -37,12 +37,12 @@ class UserController extends BaseController
 
 
 	/**
-    * ユーザ追加機能
+    * ユーザー追加機能
     * @param Reqquest $request
     * @return data
     */
     public function store(Request $request){
-    	// ユーザが提出したデータを検証する
+    	// ユーザーが提出したデータを検証する
         $this ->validate($request,
             ['username' => 'required | unique:users,username',
              'password' => 'required | confirmed',
@@ -60,18 +60,19 @@ class UserController extends BaseController
     
     }
 
+   
     /**
-    * ユーザ削除機能
+    * ユーザー削除機能
     * @param Request $request
     * @return null
     */
     public function del(int $id){
         User::find($id) -> delete();
-        return ['status' => 0,'msg' => 'ユーザ―を削除しました'];
+        return ['status' => 0,'msg' => 'ユーザー―を削除しました'];
     }
 
     /**
-    * 削除したユーザ画面
+    * 削除したユーザー画面
     * @param 
     * @return null
     */
@@ -104,7 +105,7 @@ class UserController extends BaseController
 
 
     /**
-    * ユーザ編集表示画面
+    * ユーザー編集表示画面
     * @param id
     * @return view
     */
@@ -115,19 +116,22 @@ class UserController extends BaseController
 
 
     /**
-    * ユーザ編集提出画面
+    * ユーザー編集提出画面
     * @param id
     * @return view　id
     */
     public function update(Request $request,int $id){
-
+        // username 検証
+        $username = $this ->validate($request,
+            ['username' => 'required | unique:users,username',          
+            ]);
         
         $model = User::find($id);
         $password = $model -> password;
         // パスワードを検証する
         $spass = $request -> get('spassword');
         $bool = Hash::check($spass,$password);
-        if($bool){
+        if($bool && $username){
             $data = $request -> except(['_token','password_confirmation','spassword']);
             if(!empty($data['password'])){
                 $data['password'] = bcrypt($request -> password);
@@ -137,7 +141,7 @@ class UserController extends BaseController
             $model -> update($data);
             return redirect(route('admin.user.index')) -> with('success','情報を更新しました'); 
         }else{
-            return redirect(route('admin.user.edit',$model)) -> withErrors(['error' => '元パスワードが一致しておりません']);
+            return redirect(route('admin.user.edit',$model)) -> withErrors(['error_pw' => 'パスワードが一致しておりません']);
         }
         
     }
