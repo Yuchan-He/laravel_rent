@@ -50,7 +50,7 @@ return [
         'admin' => [
             'driver' => 'session',
             'provider' => 'admin',
-        ],
+        ],       
     ],
 
     /*

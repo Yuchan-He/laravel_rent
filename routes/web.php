@@ -21,3 +21,7 @@ Route::get('/', function () {
 include base_path('routes/admin/admin.php');
 
 
+// ユーザーのrouteを入れる
+// ('front/front.php');
+include base_path('routes/front/front.php');
+
