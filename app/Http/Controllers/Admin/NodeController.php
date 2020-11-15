@@ -79,6 +79,7 @@ class NodeController extends Controller
     public function edit(Node $node)
     {
         $model = $node;
+        // dump($node);
         return view('admin.node.edit',compact('model'));
     }
 

@@ -42,7 +42,14 @@
 			</dt>
 			<dd>
 				<ul>
-					<li>
+					@foreach($menuData as $value)
+
+						<li>
+							<a data-href="{{route($value['route_name'])}}" data-title="{{$value['name']}}" href="javascript:void(0)">{{$value['name']}}</a>
+						</li>
+
+					@endforeach
+					<!-- <li>
 						<a data-href="{{route('admin.user.index')}}" data-title="ユーザーリスト" href="javascript:void(0)">ユーザーリスト</a>
 					</li>
 					<li>
@@ -53,7 +60,7 @@
 					</li>
 					<li>
 						<a data-href="{{route('admin.node.index')}}" data-title="権限管理" href="javascript:void(0)">権限管理</a>
-					</li>										
+					</li> -->										
 				</ul>
 			</dd>
 		</dl>					

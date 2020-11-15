@@ -42,9 +42,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
 		Route::get('user/edit/{id}','UserController@edit') -> name('user.edit');
 		Route::put('user/edit/{id}','UserController@update') -> name('user.update');
 
+		// ユーザー情報角色分配，match为简易写法，支持多重提交方式
+		Route::match(['get','post'],'user/role/{id}','UserController@updateRole') -> name('user.role');
 
-		// 分配权限
+
+		// 分配权限查看页面
 		Route::get('role/node/{role}','RoleController@node') -> name('role.node');
+		// 分配权限修改页面
+		Route::post('role/node/{role}','RoleController@nodeSave') -> name('role.node');
+
+
 		// RBAC權限管理--role
 		Route::resource('role','RoleController');
 

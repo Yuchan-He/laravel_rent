@@ -38,7 +38,19 @@ class LoginController extends Controller
         if(!$bool){
             return redirect(route('admin.login')) -> withErrors(['error' => 'ユーザー名か、パスワードが間違っています']);
         }else{
-            $data = auth() -> guard('admin') -> user() -> toArray();
+            $data = auth() -> guard('admin') -> user();
+            // $roleModel_1 = $data -> role(); // 调用User模型中的role()方法，获得关联模型
+            // $roleModel_2 = $data -> role() -> first(); // 获得role模型中第一个数据，user模型
+            $roleModel_3 = $data -> role; // 调用role属性,触发方法get, 获得用户角色
+            // dump($roleModel_1);
+            // dump($roleModel_2);
+            // dump($roleModel_3);
+            // 从关联模型中，获得用户节点
+            $node =  $roleModel_3 -> nodes() -> pluck('name','node_id') -> toArray();
+            // dump($node);
+            // 权限保存到session中
+            session(['admin.node' => $node]);
+
             return redirect(route('admin.index'));
         }
                 

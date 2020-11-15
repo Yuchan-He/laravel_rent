@@ -115,14 +115,40 @@ class RoleController extends BaseController
     public function node(Role $role)
     {
         // 读取所有的权限
-        $nodeAll = Node::get('name') -> toArray();
+        $nodeAll2 = Node::all();
+        $nodeAll = Node::all() ->toArray();
+        // $nodeAll = Node::get('name') -> toArray();
         // dump($nodeAll);
-        // 读取当前用户所拥有的权限
         // dump($role -> nodes ->toArray());
         //nodes()  变为关联模型,关联模型中只取name列
-        $nodes = ($role -> nodes() -> pluck('name') ->toArray());
-        
-        return view('admin.role.node',compact('nodeAll','nodes'));
+        // $nodes = ($role -> nodes() -> pluck('node_id') ->toArray());
+        // 读取当前用户所拥有的权限
+        // $nodes = $role -> nodes() -> pluck('node_id') ->toArray();
+        $nodes = $role -> nodes() -> pluck('node_id') -> toArray();
+
+        // dump($nodeAll2[0]);
+        // dump($nodeAll[0]);
+        // dump($nodes);
+        // 传递用户id,所有权限，用户的拥有的权限
+        return view('admin.role.node',compact('role','nodeAll','nodes'));
     }
+
+    /**
+     * 権限の編集
+     *
+     * @param  Request $request,根据role的id更改，引入Role,而不是Node
+     * @return 
+     */
+    public function nodeSave(Request $request,Role $role)
+    {
+        // dump($request -> all());
+        // dump($role);
+        // dump($request -> get('node'));
+        $role -> nodes() -> sync($request ->get('node'));
+        return redirect(route('admin.role.index')) -> with('success','情報を更新しました');
+        // return redirect(route('admin.role.node',$role));
+
+    }
+
 
 }

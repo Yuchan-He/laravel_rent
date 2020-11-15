@@ -21,6 +21,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // 关联角色表格查询
+    public function role(){
+        return $this -> belongsTo(Role::class,'role_id');
+    }
+
    
 
 

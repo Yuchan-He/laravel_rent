@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\User; // = use app\Models\User 
+use App\Models\Role;
 use Hash;
 
 class UserController extends BaseController
@@ -145,5 +146,37 @@ class UserController extends BaseController
         }
         
     }
+
+    /**
+    * ユーザー角色变更跳转画面
+    * @param id
+    * @return view
+    */
+    public function updateRole(Request $request,int $id){
+        // 路由设置match,所以要在此处判断提交方式，选择跳转路径
+
+        // 判断是否是post
+        if($request -> isMethod('post')){
+            // 必须要输入选项
+            $post = $this -> validate($request,[
+                'role_id' => 'required'
+            ],['role_id.required' => '役割をご選択ください']);
+            User::find($id) -> update($post);
+            return redirect(route('admin.user.index')) -> with('success','情報を更新しました');
+
+
+        }
+        // 不是post,就get显示，显示用户现有角色和所有角色
+        $roleAll = Role::all();
+        // dump($user ->toArray()) ;
+        // dump($user -> toArray());
+        // dump($id);
+        // dump($roleAll);
+        // dump($user);
+        $role_id = User::where('id',$id) -> pluck('role_id') -> toArray();
+        // dump($role_id);
+        return view('admin.user.role',compact('id','role_id','roleAll'));
+    }    
+
     
 }

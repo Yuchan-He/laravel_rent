@@ -33,6 +33,7 @@
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
 				<th width="140">ユーザー名</th>
+				<th width="140">役割変更</th>				
 				<th width="120">携帯</th>
 				<th>メール</th>
 				<th width="80">性別</th>
@@ -49,6 +50,7 @@
 					
 				</td>
 				<td>{{$value -> username}}</td>
+				<td><a href="{{route('admin.user.role',['id' => $value ->id])}}" class="btn btn-link">{{$value -> role -> roleName}}</a></td>
 				<td>{{$value -> mobile}}</td>
 				<td>{{$value -> email}}</td>
 				@if($value -> sex==1)
