@@ -1,0 +1,15 @@
+<?php
+
+// Route:group(['namespace' => 'Front'],function(){
+// 	Route::get('rent','LoginController@index');
+// });
+
+// successs
+// Route::namespace('Front') -> group(function(){
+// 	Route::get('front/index','LoginController@index');
+// });
+
+
+Route::group(['prefix' => 'front','namespace' => 'Front'],function(){
+	Route::get('index','LoginController@index');	
+});

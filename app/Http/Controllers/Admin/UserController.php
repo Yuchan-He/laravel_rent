@@ -23,7 +23,14 @@ class UserController extends BaseController
         $data = User::when($kw, function($query) use($kw) {
             $query -> where('username','like',"%{$kw}%");
         }) -> orderBy('created_at','desc') -> paginate($this -> pagesize);
-        
+
+        // dd($data);
+
+        // $roleName = new User();
+        // $roleName = $roleName -> role() -> pluck('roleName');
+        // $roleName = $roleName -> role;
+
+        // dump($roleName);
     	return view('admin.user.index',compact('data','kw','sum'));
     }
 

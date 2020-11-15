@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers\Front;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\BaseController;
+
+class IndexController extends BaseController
+{
+
+    // login成功画面の画面表示
+    public function index(){
+
+    	return view('front.index.index');
+    }
+
+}

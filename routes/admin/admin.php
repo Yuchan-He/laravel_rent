@@ -58,6 +58,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
 		// RBAC權限管理--node
 		Route::resource('node','NodeController');
 
+		// Article文章管理
+		Route::resource('article','ArticleController');
+
 
 	});
 

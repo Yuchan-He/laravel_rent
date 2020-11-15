@@ -12,6 +12,7 @@
 			<ul class="cl">
 				
 				<li class="dropDown dropDown_hover">
+					<span>{{auth() -> guard('admin') -> user() -> role ->roleName}}</span>
 					<a href="#" class="dropDown_A">{{auth() -> guard('admin') -> user() -> username}}
 						<i class="Hui-iconfont">&#xe6d5;</i>
 					</a>
