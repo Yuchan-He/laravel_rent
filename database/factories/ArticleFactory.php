@@ -9,12 +9,12 @@ $factory->define(Article::class, function (Faker $faker) {
     return [
         // Article::class 关联的模型
         // -> name 可以生成日语数据
-        'title' => $faker -> name(20),
-        'desn' => $faker -> word,
+        'title' => $faker -> company(),
+        'desn' => $faker -> address(),
         // 自己拼凑图片的位置
         'pic' => '/front/images/img_'.rand(1,4).'.jpg',
         // -> name 不能生成日语数据
-        'body' => $faker -> text,
+        'body' => $faker -> realText(),
 
     ];
 });
