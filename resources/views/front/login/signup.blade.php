@@ -1,4 +1,5 @@
 @extends('front.common.main')
+<meta name="csrf-token" content="{{ csrf_token() }}">
   @section('content')
   
   <div class="site-wrap">
@@ -71,7 +72,7 @@
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <label class="text-black" for="username">ユーザー名：</label> 
+                  <label class="text-black" for="username">ユーザー名：</label> <span id="info"></span>
                   <input type="text" id="username" name="username" class="form-control" value="{{old('username')}}">
                 </div>
               </div>
@@ -170,5 +171,69 @@
     </div>
     
   </div>
+  @section('js')
+
+  <script type="text/javascript">
+    $(function () { 
+      // 在要发起post请的ajax前加上这几行代码
+      $.ajaxSetup({
+          headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+      });
+
+      var info = document.getElementById('info');
+      $("#username").blur(function () {
+        var username = $('#username').val();
+      
+        $.ajax({          
+          type: "post",
+          url: "{{route('front.signupUsername')}}", 
+          data: { 
+            "username" : username,
+
+          },
+          dataType:"json",         
+          // headers: {
+          //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          // },
+          success: function (data) {
+            
+            console.log(data);
+            info.innerHTML = "ユーザー名が使えます。";
+            info.className = "text-black bg-success";
+            // var vCount = parseInt(data);
+            // if (data == 1) {
+            //   console.log(data);;
+            // }
+            // else {
+            //   console.log(data);;
+            // }
+          },
+
+          error: function (data) {
+            console.log(data);
+            info.innerHTML = "ユーザ名を再度入力ください、すでに登録されています。";
+            info.className = "text-white bg-danger";
+
+          },          
+
+        });
+      });
+      // $("#checkpwd").blur(function () {
+      //   return CheckPwd();
+      // });
+    });
+    // function CheckPwd()
+    // {
+    //   var bCheck = true;
+    //   if ($.trim($("#pwd").val()) != $.trim($("#checkpwd").val()))
+    //   {
+    //     alert("两次密码输入不一致");
+    //     bCheck = false;
+    //   }
+    //   return bCheck;
+    // }
+  </script>
+
+  @endsection
 
   @endsection

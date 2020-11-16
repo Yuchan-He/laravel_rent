@@ -109,7 +109,7 @@ $(function(){
 		
 		messages:{
 			username:{
-				required:'ユーザー名をご入力ください'
+				required:'ユーザー名をご入力ください',
 			},
 		},
 		// キーボード事件をキャンセル

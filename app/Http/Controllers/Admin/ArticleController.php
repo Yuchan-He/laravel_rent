@@ -53,9 +53,9 @@ class ArticleController extends BaseController
         //     ['title' => 'required',          
         //     ]);
         $pic = config('defaultPic');
-        if()
-        // 判断是否有上传文件,pic对应上传的name
-        dump($request -> hasFile('pic'));
+        // if()
+        // // 判断是否有上传文件,pic对应上传的name
+        // dump($request -> hasFile('pic'));
 
         // // 更新するデータをフィルターする
         // $post = $request -> except(['_token']);

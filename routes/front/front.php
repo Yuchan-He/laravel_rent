@@ -11,6 +11,8 @@ Route::group(['prefix' => 'front', 'namespace' => 'Front','as' => 'front.'],func
 	// 新規登録（signup）
 	// --signup 画面
 	Route::get('signup','SignupController@index') -> name('signup');
+	// --signup　ユーザー名唯一性検証画面
+	Route::post('signupUsername','SignupController@signupUsername') -> name('signupUsername');	
 	// --signup　検証&提出画面
 	Route::post('signup','SignupController@signup') -> name('signup');	
 

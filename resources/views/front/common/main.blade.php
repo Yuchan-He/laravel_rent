@@ -42,6 +42,8 @@
   <script src="/front/js/aos.js"></script>
 
   <script src="/front/js/main.js"></script>
+  <!-- error message -->
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/localization/messages_ja.js"></script>
   <!-- footer 共有部分として独立する -->
   
   <!-- 自分が定義したJS -->
