@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration
+class Test extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        //
+        Schema::create('test', function (Blueprint $table) {
             $table->bigIncrements('id');
             // 追加
             $table -> string('title',200) -> comment('タイトル');
             $table -> string('desn',255) -> default('') -> comment('文章摘要');
-            $table -> string('pic',100) -> nullable() -> comment('写真');         
-            $table -> string('file',255) -> nullable() -> comment('webuploader');
+            $table -> string('pic',100) -> nullable() -> change() -> comment('写真');         
+            $table -> string('file',255) -> nullable() -> change() -> comment('webuploader');
             $table -> text('body') -> comment('内容');            
             $table->timestamps();
             $table -> softDeletes();
 
-        });
+        });        
     }
 
     /**
@@ -34,6 +35,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        //
     }
 }

@@ -58,6 +58,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
 		// RBAC權限管理--node
 		Route::resource('node','NodeController');
 
+		// Article画像保存
+		Route::post('article/webuploader','ArticleController@webuploader') -> name('article.webuploader');
 		// Article文章管理
 		Route::resource('article','ArticleController');
 

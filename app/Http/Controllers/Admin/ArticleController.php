@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+// 'Storage' => Illuminate\Support\Facades\Storage::class,
+use Storage;
 
 class ArticleController extends BaseController
 {
@@ -46,21 +48,59 @@ class ArticleController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function webuploader(Request $request)
+    {
+        // store article picture
+        // $bool = $request -> hasFile('file');
+        // $bool =$request -> file('file') -> isValid();
+        // dump($bool);
+        // dump($request);
+        // sha1防止文件重名
+        $file = $request -> file('file');
+        if($request -> hasFile('file') && $file -> isValid()){
+            // file 重命名
+            $filename = sha1(time(). $file -> getClientOriginalName()) . '.' . $file -> getClientOriginalExtension();
+            $movefile = $file -> path();
+            Storage::disk('public') -> put($filename,file_get_contents($movefile));
+            $result = [
+                'success' => 'アップロード成功しました',
+                'path' => '/storage/' . $filename
+            ];           
+        }else{
+            $result = [
+
+                'error' => 'アップロード失敗',
+                'errorMsg' => $file -> getErrorMessage()
+            ];
+        }
+
+        // 以json形式返回结果
+        return response() -> json($result);
+
+    }    
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
+// 
+        $this ->validate($request,
+            ['title' => 'required',          
+            ]);
+        $post = $request -> except(['_token']);
+        // 没有上传文件时候，使用默认文件
+       if(empty($request -> pic)){
+            $post['pic'] = '/storage/' . '1.jpg';
+            dump($post);
+       }
 
-        // $this ->validate($request,
-        //     ['title' => 'required',          
-        //     ]);
-        $pic = config('defaultPic');
-        // if()
-        // // 判断是否有上传文件,pic对应上传的name
-        // dump($request -> hasFile('pic'));
-
-        // // 更新するデータをフィルターする
         // $post = $request -> except(['_token']);
-        // $userModel = Article::create($post);
-        // return $userModel ? '追加しました' :'追加失敗しました';
+        $userModel = Article::create($post);
+        return $userModel ? '追加しました' :'追加失敗しました';
 
     }
 

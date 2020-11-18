@@ -165,9 +165,9 @@
               <!-- END comment-list -->
               
               <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Leave a comment</h3>
+                <h3 class="mb-5">コメントしましょう</h3>
                 <form action="#" class="p-5 bg-light">
-                  <div class="form-group">
+                 <!--  <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" class="form-control" id="name">
                   </div>
@@ -178,7 +178,7 @@
                   <div class="form-group">
                     <label for="website">Website</label>
                     <input type="url" class="form-control" id="website">
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                     <label for="message">Message</label>

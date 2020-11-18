@@ -48,10 +48,10 @@ return [
             'root' => storage_path('app'),
         ],
         // 文章上传封面
-        'local' => [
-            'driver' => 'local',
-            'root' => public_path('uploads/article'),
-        ],        
+        // 'local' => [
+        //     'driver' => 'local',
+        //     'root' => public_path('uploads/article'),
+        // ],        
 
         'public' => [
             'driver' => 'local',

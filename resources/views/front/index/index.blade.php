@@ -65,7 +65,7 @@
           @foreach($data as $value)
           <div class="col-lg-4 mb-4">
             <div class="entry2">
-              <a href="{{route('front.article.show',['id' => $value -> id])}}" target="_blank"><img src="{{$value -> pic}}" alt="Image" class="img-fluid rounded"></a>
+              <a href="{{route('front.article.show',['id' => $value -> id])}}" target="_blank"><img src="{{$value -> pic}}" alt="Image" class="rounded" width="193" height="130" ></a>
               <div class="excerpt">
               <span class="post-category text-white bg-secondary mb-3">Politics</span>
               
