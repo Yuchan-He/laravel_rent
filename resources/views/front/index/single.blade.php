@@ -166,7 +166,7 @@
               
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">コメントしましょう</h3>
-                <form action="#" class="p-5 bg-light">
+                <form action="route('front.')" class="p-5 bg-light" id="comment-form">
                  <!--  <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" class="form-control" id="name">
@@ -424,6 +424,71 @@
     </div>
     
   </div>
-  
   @endsection
-  
+
+  @section('js')
+  <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+  <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/localization/messages_ja.js"></script>
+  <script type="text/javascript">
+
+  $(function(){
+    // $('.skin-minimal input').iCheck({
+    //   checkboxClass: 'icheckbox-blue',
+    //   radioClass: 'iradio-blue',
+    //   increaseArea: '20%'
+    // });
+    
+    $("#comment-form").validate({
+      rules:{
+        message:{
+          required:true
+        }        
+      },
+      
+      messages:{
+        message:{
+          required:'コメントをご入力ください',
+        },
+      },
+      // キーボード事件をキャンセル
+      onkeyup:false,
+      focusCleanup:true,
+      success:"valid",
+
+    // old code
+      // submitHandler:function(form){
+      //  // 検証成功したら、フォームを提出
+      //  form.submit();      
+      // }
+    // old code
+
+    // new code
+      submitHandler:function(form){
+        $(form).ajaxSubmit({
+          type: 'post',
+          // 自己提交给自己，不需要指定
+          url: "" ,
+          success: function(data){
+            layer.msg('ユーザーを追加しました!',{icon:1,time:2000},function(){
+            var index = parent.layer.getFrameIndex(window.name);
+            //自動更新
+                      parent.window.location = parent.window.location;
+            parent.layer.close(index);            
+            });
+          },
+                  error: function(XmlHttpRequest, textStatus, errorThrown){
+            layer.msg('他のユーザー名を指定してください、ユーザー名が既に使われいます。',{icon:2,time:3000},function(){
+            
+            });
+          }
+        });
+
+      }
+    // new code
+
+    });
+  });
+  </script> 
+
+  @endsection  

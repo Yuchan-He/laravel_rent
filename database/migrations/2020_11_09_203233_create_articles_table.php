@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             // 追加
             $table -> string('title',200) -> comment('タイトル');
-            $table -> string('desn',255) -> default('') -> comment('文章摘要');
+            $table -> unsignedInteger('user_id') -> default(0);
             $table -> string('pic',100) -> nullable() -> comment('写真');         
             $table -> string('file',255) -> nullable() -> comment('webuploader');
             $table -> text('body') -> comment('内容');            
