@@ -14,7 +14,7 @@
 				
 
 
-	<div class="row cl">
+	<!-- <div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>&nbsp;&nbsp;是否顶级：&nbsp;&nbsp;</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 			<select name="pid" class="select">
@@ -28,7 +28,7 @@
 			</select>
 			</span> 
 		</div>
-	</div>
+	</div> -->
 
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>権限名称：</label>
@@ -44,15 +44,15 @@
 	</div>
 	
 	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>是否为菜单：</label>
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>トップメニュー：</label>
 		<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 			<div class="radio-box">
-				<input name="is_menu" type="radio" id="sex-1" value="0"checked>
-				<label for="sex-1">是</label>
+				<input name="is_menu" type="radio" id="sex-1" value="1"checked>
+				<label for="sex-1">Yes</label>
 			</div>
 			<div class="radio-box">
-				<input type="radio" id="sex-2" name="is_menu" value="1">
-				<label for="sex-2">否</label>
+				<input type="radio" id="sex-2" name="is_menu" value="0">
+				<label for="sex-2">No</label>
 			</div>
 		</div>
 	</div>

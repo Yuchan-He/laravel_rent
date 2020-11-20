@@ -44,13 +44,12 @@
 		<tbody>
 			@foreach($data as $value)
 			<tr class="text-c">	
-				<td>
-					@if(auth() -> guard('admin')-> id() != $value -> id)
-					<input type="checkbox" value="{{$value -> id}}" name="">	
+				@if(auth() -> guard('admin')-> id() != $value -> id)
+				<td>					
+					<input type="checkbox" value="{{$value -> id}}" name="">
 				</td>
-
 				<td>{{$value -> username}}</td>
-				<td><a href="{{route('admin.user.role',['id' => $value ->id])}}" class="btn btn-link"></a>{{$value -> role -> roleName}}</td>
+				<td><a href="{{route('admin.user.role',['id' => $value ->id])}}" class="btn btn-link">{{$value -> role -> roleName}}</a></td>
 				<td>{{$value -> mobile}}</td>
 				<td>{{$value -> email}}</td>
 				@if($value -> sex==1)

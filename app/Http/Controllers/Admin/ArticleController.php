@@ -26,7 +26,7 @@ class ArticleController extends BaseController
         // 検索の内容はUserにあるかどうか判断する
         $data = Article::when($kw, function($query) use($kw) {
             $query -> where('title','like',"%{$kw}%");
-        }) -> orderBy('created_at','desc') -> paginate($this -> pagesize);
+        }) -> orderBy('updated_at','desc') -> paginate($this -> pagesize);
 
         return view('admin.article.index',compact('data','kw','sum'));
     }
@@ -89,18 +89,19 @@ class ArticleController extends BaseController
     {
 // 
         $this ->validate($request,
-            ['title' => 'required',          
+            ['title' => 'required',
+             'body' => 'required'         
             ]);
         $post = $request -> except(['_token']);
         // 没有上传文件时候，使用默认文件
-       if(empty($request -> pic)){
+        if(empty($request -> pic)){
             $post['pic'] = '/storage/' . '1.jpg';
-            dump($post);
-       }
+            // dump($post);
+        }
 
         // $post = $request -> except(['_token']);
         $userModel = Article::create($post);
-        return $userModel ? '追加しました' :'追加失敗しました';
+        return redirect(route('admin.article.create')) -> withErrors(['error' => '入力箇所を完了してください']);
 
     }
 
@@ -137,7 +138,25 @@ class ArticleController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        // データ検証
+        $bool = $this ->validate($request,
+            ['title' => 'required',
+             'body' => 'required'         
+            ]);
+
+        
+        $model = Article::find($id);
+        $post = $request -> except(['_token']);
+        if(empty($request -> pic)){
+            $post['pic'] = '/storage/' . '1.jpg';
+        }
+
+        if($bool){
+            $model -> update($post);
+            return redirect(route('admin.article.index')) -> with('success','更新しました'); 
+        }else{
+            return redirect(route('admin.article.edit',$model)) -> withErrors(['error' => '更新失敗しました']);
+        }       
     }
 
     /**
@@ -150,6 +169,6 @@ class ArticleController extends BaseController
     {
         //
         Article::find($id) -> delete();
-        return ['status' => 0,'msg' => '文章を削除しました'];        
+        return ['status' => 0,'msg' => '削除しました'];        
     }
 }

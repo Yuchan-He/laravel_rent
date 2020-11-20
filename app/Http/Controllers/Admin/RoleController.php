@@ -102,7 +102,7 @@ class RoleController extends BaseController
     public function destroy(int $id)
     {
         Role::destroy($id); 
-        return ['status' => 0,'msg' => 'ユーザーを削除しました'];
+        return ['status' => 0,'msg' => '削除しました'];
 
     }
 

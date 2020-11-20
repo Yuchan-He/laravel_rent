@@ -14,9 +14,9 @@ class LoginController extends Controller
     public function index(){
         //　ユーザーの登録状態を確認、すでにログインのユーザーは直接ログイン画面に行く
         if (auth() ->guard('admin')-> check()){
-            return redirect(route('admin.index'));
+            return redirect(route('front.article.index'));
         }else{
-    	   return view('admin.login.login');
+    	   return view('front.login.login');
         }
         
     }

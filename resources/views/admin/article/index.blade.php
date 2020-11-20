@@ -19,24 +19,24 @@
 @include('admin.common.msg')
 <div class="page-container">
 	<form method="get" class="text-c">		
-		<input type="text" class="input-text" style="width:250px" placeholder="会社名の一部を入力" name="kw" value = "{{$kw}}" autocomplete="off">
-		<button type="submit" class="btn btn-success"  name=""><i class="Hui-iconfont">&#xe665;</i> 会社名検索</button>
+		<input type="text" class="input-text" style="width:250px" placeholder="タイトルの一部を入力" name="kw" value = "{{$kw}}" autocomplete="off">
+		<button type="submit" class="btn btn-success"  name=""><i class="Hui-iconfont">&#xe665;</i> タイトル検索</button>
 	</form>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
 			<a href="{{route('admin.article.create')}}"  class="btn btn-primary radius">
-				<i class="Hui-iconfont">&#xe600;</i> 文章追加
+				<i class="Hui-iconfont">&#xe600;</i> 新規投稿
 			</a>
 		</span> <span class="r">合計：<strong> {{$sum}}</strong> 個　</span> </div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
-				<th width="140">会社名</th>
+				<th width="220">タイトル</th>
 				<th>摘要</th>				
-				<th width="120">更新日</th>
-				<th width="80">作成日</th>
-				<th width="80">編集</th>
+				<th width="200">更新日</th>
+				<th width="200">作成日</th>
+				<th width="200">編集</th>
 			</tr>
 		</thead>
 		<tbody>

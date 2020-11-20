@@ -25,11 +25,11 @@
 	<table class="table table-border table-bordered table-hover table-bg">
 		<thead>
 			<tr>
-				<th scope="col" colspan="6">角色管理</th>
+				<th scope="col" colspan="6">権限管理</th>
 			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" value="" name=""></th>
-				<th width="40">ID</th>
+				<!-- <th width="40">ID</th> -->
 				<th width="200">権限名称</th>
 				<th>ルート名</th>
 				<th width="300">メンユー判断</th>
@@ -40,7 +40,7 @@
 			@foreach($data as $value)
 			<tr class="text-c">
 				<td><input type="checkbox" value="" name=""></td>
-				<td>{{$value -> id}}</td>
+				<!-- <td>{{$value -> id}}</td> -->
 				<td>{{$value -> name}}</td>
 				<td>{{$value -> route_name}}</td>
 				<td>{{$value -> is_menu}}</td>

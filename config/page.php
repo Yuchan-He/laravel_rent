@@ -3,6 +3,6 @@
 
 return[
 	// パージ数
-	'pagesize' => 6
+	'pagesize' => 10
 
 ];

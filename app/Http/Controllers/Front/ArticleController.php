@@ -16,7 +16,7 @@ class ArticleController extends BaseController
     public function index()
     {
         
-        $data = Article::orderBy('id','desc') -> paginate(3);
+        $data = Article::orderBy('updated_at','desc') -> paginate(6);
         return view('front.index.index',compact('data'));
 
     }

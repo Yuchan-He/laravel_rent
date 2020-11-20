@@ -25,25 +25,25 @@
 	<table class="table table-border table-bordered table-hover table-bg">
 		<thead>
 			<tr>
-				<th scope="col" colspan="6">角色管理</th>
+				<th scope="col" colspan="6">役割管理</th>
 			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" value="" name=""></th>
-				<th width="40">ID</th>
-				<th width="200">角色名</th>
+				<!-- <th width="80">ID</th> -->
+				<th width="300">役割</th>
 				<th>権限</th>
-				<th width="300">描述</th>
-				<th width="70">操作</th>
+			<!-- 	<th width="300">描述</th> -->
+				<th >編集</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach($data as $value)
 			<tr class="text-c">
 				<td><input type="checkbox" value="{{$value -> id}}" name="id[]"></td>
-				<td>{{$value['id']}}</td>
+				<!-- <td>{{$value['id']}}</td> -->
 				<td>{{$value['roleName']}}</td>
 				<td><a href="{{route('admin.role.node',['id' => $value -> id])}}" class="label label-success radius">権限詳細</a></td>
-				<td>拥有至高无上的权利</td>
+		<!-- 		<td>拥有至高无上的权利</td> -->
 				<td class="f-14">
 					<a title="編集" href="{{route('admin.role.edit',['id' => $value -> id])}}" style="text-decoration:none" ><i class="Hui-iconfont">&#xe6df;</i>
 					</a>  

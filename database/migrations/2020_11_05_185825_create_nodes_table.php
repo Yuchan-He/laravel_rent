@@ -18,7 +18,7 @@ class CreateNodesTable extends Migration
 
             $table -> string('name',50) -> comment('nodes_name');
             $table -> string('route_name',100) -> default('') -> comment('route別名、権限判断の根拠');
-            $table -> unsignedInteger('pid') -> default(0) -> comment('上位権限');
+            $table -> unsignedInteger('pid') -> nullable() -> comment('上位権限');
             $table -> enum('is_menu',['0','1']) -> default('0') -> comment('一段階のメンユーがあるか、1はあり');
             $table -> softDeletes();
             $table -> timestamps();

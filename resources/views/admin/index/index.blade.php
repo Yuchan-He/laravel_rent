@@ -1,12 +1,12 @@
 ﻿
 @extends('admin.common.main')
 
-<title>管理画面</title>
+<title>Mini Rent</title>
 @section('content')
 <body>
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
-		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="">管理画面</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href=""></a> 
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="">Mini Rent</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href=""></a> 
 
 		<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 			<ul class="cl">

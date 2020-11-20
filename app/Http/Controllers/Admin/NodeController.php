@@ -48,7 +48,7 @@ class NodeController extends Controller
         $this -> validate($request,[
             'name' => 'required | unique:nodes,name',
             'route_name' => 'required',
-            'pid' => 'required',
+            // 'pid' => 'required',
             'is_menu' => 'required',
         ]);
 
@@ -109,6 +109,6 @@ class NodeController extends Controller
     {
         //传递的是Node $node,所以要用 $node,如果传入的$id,下方也要用$id
         Node::destroy($node); 
-        return ['status' => 0,'msg' => 'ユーザー―を削除しました'];
+        return ['status' => 0,'msg' => '削除しました'];
     }
 }
