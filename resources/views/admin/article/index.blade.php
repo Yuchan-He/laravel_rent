@@ -24,9 +24,9 @@
 	</form>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
-			<a href="{{route('admin.article.create')}}"  class="btn btn-primary radius">
+			<!-- <a href="{{route('admin.article.create')}}"  class="btn btn-primary radius">
 				<i class="Hui-iconfont">&#xe600;</i> 新規投稿
-			</a>
+			</a> -->
 		</span> <span class="r">合計：<strong> {{$sum}}</strong> 個　</span> </div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>

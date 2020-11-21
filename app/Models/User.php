@@ -26,13 +26,15 @@ class User extends Authenticatable
         return $this -> belongsTo(Role::class,'role_id');
     }
 
+
+
    
     /** 
     * 一つのuserに多数の文章が存在する
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-    public function comments(){
-        return $this -> hasMany(Article::class);
+    public function article(){
+        // return $this -> hasMany(Article::class,'id','user_id');
     }
 
 }

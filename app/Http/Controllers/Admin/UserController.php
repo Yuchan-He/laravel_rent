@@ -76,7 +76,7 @@ class UserController extends BaseController
     */
     public function del(int $id){
         User::find($id) -> delete();
-        return ['status' => 0,'msg' => 'ユーザー―を削除しました'];
+        return ['status' => 0,'msg' => '削除しました'];
     }
 
     /**

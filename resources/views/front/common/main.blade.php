@@ -48,10 +48,10 @@
           <div class="col-8 text-right">
             <nav class="site-navigation" role="navigation">
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
-                <li><a href="">{{auth() -> guard('admin') -> user() -> username}} さん、ようこそ<i class="icon-heart text-danger" aria-hidden="true"></i></a></li>            
+                <li><a href="">ようこそ<i class="icon-heart text-danger" aria-hidden="true"></i></a></li>            
                 @if(auth() ->guard('admin') ->check())
-                <li><a href="{{route('admin.article.create')}}">投稿しましょう</a></li>
-                <li><a href="{{route('admin.index')}}">設定</a></li>  
+                <li><a href="{{route('admin.article.create')}}" target="_blank">{{auth() -> guard('admin') -> user() -> username}} さん、投稿しましょう</a></li>
+                <li><a href="{{route('admin.index')}}">管理</a></li>  
                 <li><a href="{{route('front.logout')}}">ログアウト</a></li>                 
                 @else
                 <li><a href="{{route('front.signup')}}">新規登録</a></li>   

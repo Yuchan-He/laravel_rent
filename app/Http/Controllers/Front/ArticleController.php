@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Article;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 
@@ -52,8 +54,20 @@ class ArticleController extends BaseController
     {
         // 对应的id用户取得数据
         $model = $article;
+        // 获得文章所有评论
+        $article_id = $article -> id;
+        
+        $comment = Comment::where('article_id','=',$article_id) -> get();
+        // $comment = $article -> comment
+        // $user_id = Comment::where('article_id','=',$article_id) -> pluck('user_id');
+        // $username = User::where('id','=',$user_id) -> get();
+        // dd($username);
+        // dd($user_id);
+        // dd($comment);
+        // $username = $model -> where('id',$id) -> pluck('user_id') -> toArray(); 
         // dump($data);
-        return view('front.index.single', compact('model'));
+        // dd($username);
+        return view('front.index.single', compact('model','comment'));        
     }
 
     /**

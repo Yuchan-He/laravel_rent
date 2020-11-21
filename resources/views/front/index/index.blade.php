@@ -37,11 +37,11 @@
               <div class="excerpt">
               <span class="post-category text-white bg-secondary mb-3">Politics</span>
               
-              <h2><a href="">{{$value -> title}}</a></h2>
+              <h2><a href="{{route('front.article.show',['id' => $value -> id])}}" target="_blank">{{$value -> title}}</a></h2>
               <div class="post-meta align-items-center text-left clearfix">
-                <figure class="author-figure mb-0 mr-3 float-left"><img src="uploads/article/1.jpg" alt="Image" class="img-fluid"></figure>
+                <figure class="author-figure mb-0 mr-3 float-left"><img src="{{$value -> pic}}" alt="Image" class="img-fluid"></figure>
        <!--          <span class="d-inline-block mt-1">作者<a href="#">Carrol Atkinson</a></span> -->
-                <span>&nbsp;-&nbsp; {{$value -> created_at}}</span>
+                <span>&nbsp;&nbsp; {{$value -> created_at}}</span>
               </div>
               
                 <p>{{$value -> desn}}</p>
@@ -53,6 +53,8 @@
           {{ $data->links() }}
       </div>
     </div>
+
+    
 
    <!--  <div class="site-section bg-light">
       <div class="container">

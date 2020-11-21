@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+// use App\Models\User;
+
 // 'Storage' => Illuminate\Support\Facades\Storage::class,
 use Storage;
 
@@ -18,17 +20,45 @@ class ArticleController extends BaseController
      */
     public function index(Request $request)
     {
-        // 検索のデータを取得
-        $kw = $request -> get('kw');
-        // modelのデータ合計を取得
-        $sum = Article::count();
+        // 用户权限判断，如果是一般用户，只显示自己的文章
+        $role = auth() -> guard('admin') -> user() -> role_id;
+        $user_id = auth() -> guard('admin') -> user() -> id;
+        // $user_article = $user_id -> article() -> title;
 
-        // 検索の内容はUserにあるかどうか判断する
-        $data = Article::when($kw, function($query) use($kw) {
-            $query -> where('title','like',"%{$kw}%");
-        }) -> orderBy('updated_at','desc') -> paginate($this -> pagesize);
+       // $user_article = User::with('article') -> where('id',$user_id) -> get() -> toArray();
+        $user_article = Article::where('user_id','=',$user_id) -> pluck('title');
+        // dump($user_id);
+        // dd($user_article);
 
-        return view('admin.article.index',compact('data','kw','sum'));
+        if($role == 4){
+            // 検索のデータを取得
+            $kw = $request -> get('kw');
+            // modelのデータ合計を取得
+            // $sum = Article::count();
+
+            // 検索の内容はUserにあるかどうか判断する
+            // $data =  Article::where('user_id','=',$user_id) -> orderBy('updated_at','desc') -> paginate($this -> pagesize);
+            $user_article = Article::where('user_id','=',$user_id);
+            $sum = $user_article ->count();
+            $data = $user_article -> when($kw, function($query) use($kw) {
+                $query -> where('title','like',"%{$kw}%");
+            }) -> orderBy('updated_at','desc') -> paginate($this -> pagesize);
+
+            return view('admin.article.index',compact('data','kw','sum'));
+
+        }else{
+            // 検索のデータを取得
+            $kw = $request -> get('kw');
+            // modelのデータ合計を取得
+            $sum = Article::count();
+
+            // 検索の内容はUserにあるかどうか判断する
+            $data = Article::when($kw, function($query) use($kw) {
+                $query -> where('title','like',"%{$kw}%");
+            }) -> orderBy('updated_at','desc') -> paginate($this -> pagesize);
+
+            return view('admin.article.index',compact('data','kw','sum'));
+        }
     }
 
     /**
@@ -39,6 +69,8 @@ class ArticleController extends BaseController
     public function create()
     {
         //
+        // $defaultPic = config('defaultPic.pic');
+        // dump($defaultPic);
         return view('admin.article.create');        
     }
 
@@ -93,9 +125,11 @@ class ArticleController extends BaseController
              'body' => 'required'         
             ]);
         $post = $request -> except(['_token']);
+        $defaultPic = config('defaultPic.pic');
+
         // 没有上传文件时候，使用默认文件
         if(empty($request -> pic)){
-            $post['pic'] = '/storage/' . '1.jpg';
+            $post['pic'] = $defaultPic;
             // dump($post);
         }
 
@@ -147,8 +181,9 @@ class ArticleController extends BaseController
         
         $model = Article::find($id);
         $post = $request -> except(['_token']);
+        $defaultPic = config('defaultPic.pic');
         if(empty($request -> pic)){
-            $post['pic'] = '/storage/' . '1.jpg';
+            $post['pic'] = $defaultPic;
         }
 
         if($bool){

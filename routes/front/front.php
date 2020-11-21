@@ -8,6 +8,9 @@ Route::group(['prefix' => 'front', 'namespace' => 'Front','as' => 'front.'],func
 	// --文章管理
 	Route::resource('article','ArticleController');
 
+	// --comment管理
+	Route::resource('comment','CommentController');
+
 	// 新規登録（signup）
 	// --signup 画面
 	Route::get('signup','SignupController@index') -> name('signup');
