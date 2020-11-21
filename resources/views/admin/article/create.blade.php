@@ -132,7 +132,7 @@ $(function(){
 					// var index = layer.getFrameIndex(window.name);
 					// //自動更新
      				// window.location = window.location;
-     				window.location = "{{route('admin.article.index')}}";
+     				window.location = "{{route('front.article.index')}}";
 					// layer.close(index);						
 					});
 				},
