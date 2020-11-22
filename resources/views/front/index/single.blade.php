@@ -5,13 +5,13 @@
         <div class="row same-height justify-content-center">
           <div class="col-md-12 col-lg-10">
             <div class="post-entry text-center">
-              <span class="post-category text-white bg-success mb-3">Nature</span>
+              <span class="post-category text-white bg-success mb-3">Tiny Happiness</span>
               <h1 class="mb-4">{{$model -> title}}</h1>
-              <div class="post-meta align-items-center text-center">
+       <!--        <div class="post-meta align-items-center text-center">
 
                 <span class="d-inline-block mt-1">By {{$model -> user -> username}} </span>
                 <span>&nbsp;-&nbsp; {{$model -> updated_at}}</span>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -19,21 +19,24 @@
     </div>
     
     <section class="site-section py-lg">
-      <div class="container">
-        
-        <div class="row blog-entries element-animate">
 
+      <div class="post-meta align-items-center text-center">
+
+        <span class="d-inline-block mt-1">By {{$model -> user -> username}} </span>
+        <span>&nbsp;-&nbsp; {{$model -> updated_at}}</span>
+      </div>            
+
+      <div class="container">        
+        <div class="row blog-entries element-animate">
           <div class="col-md-12 col-lg-8 main-content">
             <div class="post-content-body">              
               <p>{{$model -> body}}</p>
             </div>                  
             <div class="pt-5">
-              <span class="post-category text-white bg-success">いいね！</span>
+              <!-- <span class="post-category text-white bg-success">いいね！</span> -->
             </div>
-
-
             <div class="pt-5">
-              <!-- <h3 class="mb-5">6 Comments</h3> -->
+              <h3 class="mb-5">コメント</h3>
               <ul class="comment-list">
                 @foreach($comment as $value)
                 <li class="comment">
@@ -41,8 +44,8 @@
                     <!-- <img src="images/person_1.jpg" alt="Image placeholder"> -->
                   </div>
                   <div class="comment-body">
-                    <h3></h3>
-                    <div class="meta">{{$value -> created_at}}</div>
+                    <!-- <h6>コメント by:{{$value -> user -> username}}</h6> -->
+                    <div class="meta">{{$value -> created_at}} &nbsp;-&nbsp;  by:{{$value -> user -> username}}</div>
                     <p>{{$value -> content}}</p>
                     <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
                   </div>

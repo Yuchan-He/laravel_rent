@@ -58,10 +58,24 @@ class ArticleController extends BaseController
         $article_id = $article -> id;
         
         $comment = Comment::where('article_id','=',$article_id) -> get();
+
         // $comment = $article -> comment
-        // $user_id = Comment::where('article_id','=',$article_id) -> pluck('user_id');
+        $user_id = Comment::where('article_id','=',$article_id) -> pluck('user_id') -> toArray();
+
+        // dd($user_id);
+        // comment 用户名
+        // $username[] ="匿名ユーザー";
+        // dd($comment);
+        // foreach ($user_id as $user_id) {
+        //     $username  = User::where('id','=',$user_id) -> pluck('username') -> toArray();
+            // $username[] =$username;
+            // dump($comment['username']);
+            // $comment['username'] = $username;
+            // dump($username);
+        // }
+        // $comment['username'] = $username[];
         // $username = User::where('id','=',$user_id) -> get();
-        // dd($username);
+        // print_r($username);
         // dd($user_id);
         // dd($comment);
         // $username = $model -> where('id',$id) -> pluck('user_id') -> toArray(); 

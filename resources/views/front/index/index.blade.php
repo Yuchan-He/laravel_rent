@@ -1,20 +1,23 @@
 @extends('front.common.main')
   @section('content')
   
-    <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('');">
+    <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('/storage/hero_1.jpg');">
       <div class="container">
         <div class="row same-height justify-content-center">
           <div class="col-md-12 col-lg-10">
             <div class="post-entry text-center">
-              <span class="post-category text-white bg-success mb-3">Mini Rent</span>
-              <h1 class="mb-4">Mini Rentとは</h1>
-              <h2 class="mb-4">たまに登山いきたい！けど登山の装備はない。。。そういう悩みの方に小っちゃくでもいい、レンタルしましょう</h2>
-              <div class="post-meta align-items-center text-center">
-                <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="" alt="Image" class="img-fluid"></figure>
+              <!-- <span class="post-category text-white bg-success mb-3">Tiny Happiness</span> -->
+              <h1 class="mb-4">Tiny Happiness</h1>
+              <h2 class="mb-4">&nbsp;&nbsp;&nbsp;&nbsp;あなたの小確幸シェアしませんか?
+              <span class="post-category text-white bg-success mb-3">Tiny Happiness</span>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;生活の中に個人的な「小確幸」（小さいけれども、確かな幸福）を見出すためには、多かれ少なかれ自己規制みたいなものが必要とされる。</p>
+              <p>--村上春樹 『うずまき猫のみつけかた』</p></h2>
+              <!-- <div class="post-meta align-items-center text-center"> -->
+                <!-- <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="" alt="Image" class="img-fluid"></figure> -->
 
 <!--                 <span class="d-inline-block mt-1">By </span>
                 <span>&nbsp;-&nbsp; February 10, 2019</span> -->
-              </div>
+              <!-- </div> -->
             </div>
           </div>
         </div>
@@ -35,7 +38,7 @@
             <div class="entry2">
               <a href="{{route('front.article.show',['id' => $value -> id])}}" target="_blank"><img src="{{$value -> pic}}" alt="Image" class="rounded" width="370" height="250" ></a>
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3">Politics</span>
+              <span class="post-category text-white mb-3 bg-success">{{$value -> user -> username}}</span>
               
               <h2><a href="{{route('front.article.show',['id' => $value -> id])}}" target="_blank">{{$value -> title}}</a></h2>
               <div class="post-meta align-items-center text-left clearfix">

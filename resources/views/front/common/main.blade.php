@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <!-- header 共有部分として独立する --> 
-<html lang="en">
+<html lang="ja">
   <head>
-    <title>Mini Rent</title>
+    <title>Tiny Happiness</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -42,13 +42,13 @@
           
 
           <div class="col-4 site-logo">
-            <a href="{{route('front.article.index')}}" class="text-black h2 mb-0">Mini Rent</a>
+            <a href="{{route('front.article.index')}}" class="text-black h2 mb-0">Tiny Happiness</a>
           </div>
 
           <div class="col-8 text-right">
             <nav class="site-navigation" role="navigation">
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
-                <li><a href="">ようこそ<i class="icon-heart text-danger" aria-hidden="true"></i></a></li>            
+                <li>ようこそ<i class="icon-heart text-danger" aria-hidden="true"></i></li>            
                 @if(auth() ->guard('admin') ->check())
                 <li><a href="{{route('admin.article.create')}}" target="_blank">{{auth() -> guard('admin') -> user() -> username}} さん、投稿しましょう</a></li>
                 <li><a href="{{route('admin.index')}}">管理</a></li>  

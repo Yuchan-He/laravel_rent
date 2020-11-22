@@ -4,6 +4,8 @@
 // prefix:routeの前置きの名前を設定
 // namespace:関連するcontrollerの前置きの名前を設定
 Route::group(['prefix' => 'front', 'namespace' => 'Front','as' => 'front.'],function(){
+
+	// Route::get('category/{id}','CategoryController@show') -> name('category.show');
 	// home page画面表示
 	// --文章管理
 	Route::resource('article','ArticleController');

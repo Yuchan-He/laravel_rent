@@ -108,7 +108,8 @@ class NodeController extends Controller
     public function destroy(Node $node)
     {
         //传递的是Node $node,所以要用 $node,如果传入的$id,下方也要用$id
-        Node::destroy($node); 
+        // dd($node);
+        Node::destroy($node -> id); 
         return ['status' => 0,'msg' => '削除しました'];
     }
 }
