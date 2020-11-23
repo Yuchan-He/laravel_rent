@@ -19,7 +19,10 @@ class UserTableSeeder extends Seeder
         // factoryでdataを補充する
         factory(User::class,50) -> create();
         // adminユーザーを指定する
-        User::where('id',1) -> update(['username' => 'admin']);
+        User::where('id',1) -> update(
+            ['username' => 'admin',
+             'role_id' => 1
+            ]);
         
     }
 }

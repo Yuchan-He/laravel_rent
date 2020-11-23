@@ -13,9 +13,9 @@
 		@include('admin.common.validate')
 		
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>ユーザー名：</label>
+			<!-- <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>ユーザー名：</label> -->
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="{{$model -> username}}" id="username" name="username">
+				<input type="hidden" class="input-text" value="{{$model -> username}}" id="username" name="username">
 			</div>
 		</div>
 		<div class="row cl">

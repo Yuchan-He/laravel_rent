@@ -11,18 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Front\ArticleController@index') -> name('home');
 
 // ユーザーのrouteを入れる
 // ('front/front.php');
 include base_path('routes/front/front.php');
 
+
 // 管理者のrouteを入れる
 // ('admin/admin.php');
 include base_path('routes/admin/admin.php');
-
-
-
-

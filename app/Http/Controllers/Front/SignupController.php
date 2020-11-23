@@ -51,6 +51,7 @@ class SignupController extends Controller
         // 更新するデータをフィルターする
         $post = $request -> except(['_token']);
         $post['password'] = bcrypt($request -> password);
+        $post['role_id'] ='4';
         $userModel = User::create($post);
         if(!$userModel){
             return redirect(route('front.login.signup')); 

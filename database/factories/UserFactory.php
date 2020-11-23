@@ -9,6 +9,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         // ランダムなデータを作成
         // fakerのデータの型はmigrationsの中の設定は一致すべき
+        'role_id'   => 4,
         'username' 	=> $faker -> name(20),
         'password'	=> bcrypt('12345678'),
         'sex'		=> rand(1,3),

@@ -62,6 +62,7 @@ class UserController extends BaseController
         // 更新するデータをフィルターする
         $post = $request -> except(['_token','password_confirmation']);
         $post['password'] = bcrypt($request -> password);
+        $post['role_id'] ='4';        
         $userModel = User::create($post);
         return $userModel ? '新しいユーザーを追加しました' :'ユーザーを追加失敗しました';
  
@@ -130,16 +131,16 @@ class UserController extends BaseController
     */
     public function update(Request $request,int $id){
         // username 検証
-        $username = $this ->validate($request,
-            ['username' => 'required | unique:users,username',          
-            ]);
+        // $username = $this ->validate($request,
+        //     ['username' => 'required | unique:users,username',          
+        //     ]);
         
         $model = User::find($id);
         $password = $model -> password;
         // パスワードを検証する
         $spass = $request -> get('spassword');
         $bool = Hash::check($spass,$password);
-        if($bool && $username){
+        if($bool){
             $data = $request -> except(['_token','password_confirmation','spassword']);
             if(!empty($data['password'])){
                 $data['password'] = bcrypt($request -> password);

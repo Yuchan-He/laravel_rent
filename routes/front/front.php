@@ -1,4 +1,5 @@
 <?php
+
 // frontのroute
 
 // prefix:routeの前置きの名前を設定
