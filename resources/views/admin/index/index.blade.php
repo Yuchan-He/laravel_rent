@@ -96,7 +96,7 @@ function myselfinfo(){
 		type: 2,
 		title: "管理者情報",
 		area: ['750px','500px'],
-		content: "{{route('admin.user.edit',['id' => auth() -> guard('admin') -> user() -> id])}}"
+		content: "{{route('admin.user.editPersonal',['id' => auth() -> guard('admin') -> user() -> id])}}"
 	});
 	
 }

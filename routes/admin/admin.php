@@ -43,6 +43,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
 		Route::get('user/edit/{id}','UserController@edit') -> name('user.edit');
 		Route::put('user/edit/{id}','UserController@update') -> name('user.update');
 
+		// 個人情報情報編集機能
+		Route::get('user/editPersonal/{id}','UserController@editPersonal') -> name('user.editPersonal');
+		Route::put('user/editPersonal/{id}','UserController@updatePersonal') -> name('user.updatePersonal');		
+
 		// ユーザー情報角色分配，match为简易写法，支持多重提交方式
 		Route::match(['get','post'],'user/role/{id}','UserController@updateRole') -> name('user.role');
 

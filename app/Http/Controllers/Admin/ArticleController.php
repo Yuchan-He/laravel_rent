@@ -92,11 +92,25 @@ class ArticleController extends BaseController
         if($request -> hasFile('file') && $file -> isValid()){
             // file 重命名
             $filename = sha1(time(). $file -> getClientOriginalName()) . '.' . $file -> getClientOriginalExtension();
+            // aws
+            // $filename = time(). $file -> getClientOriginalName() . '.' . $file -> getClientOriginalExtension();
+
+            // aws
+
             $movefile = $file -> path();
             Storage::disk('public') -> put($filename,file_get_contents($movefile));
+
+            // aws
+            // $path = Storage::disk('s3') -> put($filename,file_get_contents($movefile));
+            // $url = Storage::disk('s3') -> url($path);
+            // aws
+
             $result = [
                 'success' => 'アップロード成功しました',
                 'path' => '/storage/' . $filename
+                // aws
+                // 'path' => $url          
+                // aws
             ];           
         }else{
             $result = [
@@ -132,7 +146,10 @@ class ArticleController extends BaseController
             $post['pic'] = $defaultPic;
             // dump($post);
         }
-
+        
+        // aws
+        $post['pic'] = Storage::disk('s3') -> url($path);
+        // aws
         // $post = $request -> except(['_token']);
         $userModel = Article::create($post);
         return redirect(route('admin.article.create')) -> withErrors(['error' => '入力箇所を完了してください']);

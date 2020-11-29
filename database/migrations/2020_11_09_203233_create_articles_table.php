@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table -> string('title',200) -> comment('タイトル');
             $table -> unsignedInteger('user_id') -> default(0);
             $table -> string('desn',100) -> comment('摘要') -> nullable();              
-            $table -> string('pic',100) -> nullable() -> comment('写真');         
+            $table -> string('pic',255) -> nullable() -> comment('写真');         
             $table -> string('file',255) -> nullable() -> comment('webuploader');
             $table -> text('body') -> comment('内容');            
             $table->timestamps();

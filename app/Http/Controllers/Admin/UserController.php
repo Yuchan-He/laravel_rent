@@ -156,6 +156,43 @@ class UserController extends BaseController
     }
 
     /**
+    * 個人情報編集表示画面
+    * @param id
+    * @return view
+    */
+    public function editPersonal(int $id){
+        $model = User::find($id);
+        return view('admin.user.editPersonal',compact('model'));
+    }
+
+    /**
+    * 個人情報編集提出画面
+    * @param id
+    * @return view　id
+    */
+    public function updatePersonal(Request $request,int $id){
+        
+        $model = User::find($id);
+        $password = $model -> password;
+        // パスワードを検証する
+        $spass = $request -> get('spassword');
+        $bool = Hash::check($spass,$password);
+        if($bool){
+            $data = $request -> except(['_token','password_confirmation','spassword']);
+            if(!empty($data['password'])){
+                $data['password'] = bcrypt($request -> password);
+            }else{
+                unset($data['password']);
+            }
+            $model -> update($data);
+            return '情報を更新しました'; 
+        }else{
+            return redirect(route('admin.user.editPersonal',$model)) -> withErrors(['error_pw' => 'パスワードが一致しておりません']);
+        }
+        
+    }
+
+    /**
     * ユーザー角色变更跳转画面
     * @param id
     * @return view
