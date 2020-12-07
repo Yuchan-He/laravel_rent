@@ -38,10 +38,9 @@ class CommentController extends Controller
     {
         //
         // dd($request);
-        // $this ->validate($request,
-        //     ['title' => 'required',
-        //      'body' => 'required'         
-        //     ]);
+        $this ->validate($request,
+            ['content' => 'required'         
+            ]);
         $post = $request -> except(['_token']);
         // $id = $request -> article_id;
         // $defaultPic = config('defaultPic.pic');

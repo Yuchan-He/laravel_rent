@@ -1,0 +1,45 @@
+<?php
+
+namespace Tests\Feature;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class ExampleTest extends TestCase
+{
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    // public function testBasicTest()
+    // {
+    //     $response = $this->get('/');
+
+    //     $response->assertStatus(200);
+    // }
+
+    /**
+     * 登録していないユーザー、管理画面見れない
+     *
+     * @return void
+     */
+    public function testoffLoginTest()
+    {
+        $response = $this->get('/admin/index')->assertRedirect('/front/login');
+
+        // $response->assertRedirect('/front/login');
+    }
+
+    /**
+     * 登録していたユーザーしか、管理画面見れない
+     *
+     * @return void
+     */
+    // public function onLoginTest()
+    // {
+    //     $response = $this->get('/admin/index')->assertRedirect('/front/login');
+
+    //     // $response->assertRedirect('/front/login');
+    // }    
+}

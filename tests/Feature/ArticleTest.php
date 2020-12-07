@@ -3,16 +3,17 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class ArticleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * @test
      *
      * @return void
      */
-    public function testBasicTest()
+    public function a_article_can_be_added()
     {
         $response = $this->get('/');
 
